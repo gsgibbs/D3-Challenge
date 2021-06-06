@@ -1,6 +1,6 @@
 // // Set x/y axis variables.
-var x_Axis = "poverty";
-var y_Axis = "healthcare";
+var plotxAxis = "poverty";
+var plotyAxis = "healthcare";
 // Function used for updating x-scale var upon click on axis label.
 function xScale(data, plotxAxis, chartWidth) {
     // Create scales.
@@ -146,8 +146,8 @@ function makeResponsive() {
             data.obesity = data.obesity;
         });
         // Create x/y linear scales.
-        var xLinearScale = xScale(demoData, chosenXAxis, chartWidth);
-        var yLinearScale = yScale(demoData, chosenYAxis, chartHeight);
+        var xLinearScale = xScale(demoData, plotxAxis, chartWidth);
+        var yLinearScale = yScale(demoData, plotyAxis, chartHeight);
         // Create initial axis functions.
         var bottomAxis =d3.axisBottom(xLinearScale);
         var leftAxis = d3.axisLeft(yLinearScale);
@@ -210,14 +210,14 @@ function makeResponsive() {
             .classed("active", true)
             .text("Lacks Healthcare (%)");
         var smokesLabel = yLabelsGroup.append("text")
-            .attr("x", 0 - (chartHeight / 2))
+            .attr("x", 0 - (chartht / 2))
             .attr("y", 20 - margin.left)
             .attr("dy", "1em")
             .attr("value", "smokes")
             .classed("inactive", true)
             .text("Smokes (%)");
         var obeseLabel = yLabelsGroup.append("text")
-            .attr("x", 0 - (chartHt / 2))
+            .attr("x", 0 - (chartHeight / 2))
             .attr("y", 0 - margin.left)
             .attr("dy", "1em")
             .attr("value", "obesity")
@@ -227,9 +227,9 @@ function makeResponsive() {
         xLabelsGroup.selectAll("text")
             .on("click", function() {
                 // Grab selected label.
-                chosenXAxis = d3.select(this).attr("value");
+                plotxAxis = d3.select(this).attr("value");
                 // Update xLinearScale.
-                xLinearScale = xScale(demoData, plotxAxis, chartWdth);
+                xLinearScale = xScale(demoData, plotxAxis, chartWidth);
                 // Render xAxis.
                 xAxis = renderXAxes(xLinearScale, xAxis);
                 // Switch active/inactive labels.
